@@ -30,18 +30,18 @@
     public void visitAttraction(AnimalAttraction attraction)
     {
         visitedAttractions.Add(attraction);
-        Ticket ticket = new Ticket("asdf", 10, TicketType.ADULT_TICKET);
+        Ticket ticket = new Ticket(attraction.Name, 10, TicketType.ADULT_TICKET);
 
         switch (Type)
         {
             case VisitorType.ADULT:
-                ticket = new Ticket("asdf", 10, TicketType.ADULT_TICKET);
+                ticket = new Ticket(attraction.Name, 10, TicketType.ADULT_TICKET);
                 break;
             case VisitorType.CHILD:
-                ticket = new Ticket("asdf", 10, TicketType.CHILD_TICKET);
+                ticket = new Ticket(attraction.Name, 10, TicketType.CHILD_TICKET);
                 break;
             case VisitorType.STUDENT:
-                ticket = new Ticket("asdf", 10, TicketType.STUDENT_TICKET);
+                ticket = new Ticket(attraction.Name, 10, TicketType.STUDENT_TICKET);
                 break;
 
         }

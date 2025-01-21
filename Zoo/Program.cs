@@ -64,7 +64,7 @@
                 }
                 else
                 {
-                    Console.WriteLine("Invalid Command Please Enter a valid One");
+                    Console.WriteLine($"Invalid Command: {command}. Please enter a valid command.");
                 }
                 command = Console.ReadLine();
             }

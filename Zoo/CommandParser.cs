@@ -23,7 +23,7 @@ namespace Zoo
         {
             foreach (AnimalAttraction attr in AnimalAttraction.AllAttractions)
             {
-                attr.ToString();
+                Console.WriteLine(attr.ToString());
             }
         }
         public static void CreateAttraction()

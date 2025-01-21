@@ -9,7 +9,7 @@
     public int Id { get => id; set => id = value; }
     public string Name { get => name; set => name = value; }
     public string Location { get => location; set => location = value; }
-    public string Description { get => Description; set => Description = value; }
+    public string Description { get => description; set => description = value; }
     public AttractionType Type { get => type; set => type = value; }
     public static List<AnimalAttraction> TotalVisits { get => totalVisits; set => totalVisits = value; }
     public static List<AnimalAttraction> AllAttractions { get => allAttractions; set => allAttractions = value; }
@@ -50,7 +50,7 @@
     {
         foreach (AnimalAttraction attr in AllAttractions)
         {
-            if (name == attr.name)
+            if (name.Equals(attr.name, StringComparison.OrdinalIgnoreCase))
                 return attr;
         }
         return null;
@@ -63,9 +63,11 @@
         {
             if (attr.type == type)
             {
-                Console.WriteLine(attr.name + ", ");
+                Console.Write(attr.name + ", ");
             }
         }
+        Console.WriteLine();
+
     }
     public double GetAttractionPrice(Ticket ticket)
     {
@@ -124,7 +126,7 @@
 
         if (mostVisits == mammal)
         {
-            Console.WriteLine("The most visited is the Mammel!");
+            Console.WriteLine("The most visited is the Mammal!");
         }
         if (mostVisits == birds)
         {
