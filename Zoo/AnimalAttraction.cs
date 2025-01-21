@@ -12,10 +12,11 @@
     public string Description { get => Description; set => Description = value; }
     public AttractionType Type { get => type; set => type = value; }
     public static List<AnimalAttraction> TotalVisits { get => totalVisits; set => totalVisits = value; }
+    public static List<AnimalAttraction> AllAttractions { get => allAttractions; set => allAttractions = value; }
 
     private static List<AnimalAttraction> allAttractions = new List<AnimalAttraction>();
 
-    private static List<AnimalAttraction> totalVisits = new List<AnimalAttraction>();
+    public static List<AnimalAttraction> totalVisits = new List<AnimalAttraction>();
 
 
 
@@ -27,7 +28,7 @@
         this.Location = location;
         this.Description = description;
         this.Type = type;
-        allAttractions.Add(this);
+        AllAttractions.Add(this);
     }
 
     public double getTicketPrice(TicketType ticketType)
@@ -45,21 +46,20 @@
         }
     }
 
-
-    public AnimalAttraction SearchByName(string name)
+    public static AnimalAttraction SearchByName(string name)
     {
-        foreach (AnimalAttraction attr in allAttractions)
+        foreach (AnimalAttraction attr in AllAttractions)
         {
             if (name == attr.name)
                 return attr;
         }
         return null;
     }
-    public void FilterByType(AttractionType type)
+    public static void FilterByType(AttractionType type)
     {
         Console.Write($"The Attractions form type {type} are: ");
 
-        foreach (AnimalAttraction attr in allAttractions)
+        foreach (AnimalAttraction attr in AllAttractions)
         {
             if (attr.type == type)
             {
@@ -91,7 +91,7 @@
     {
         return $"Attraction№{Id} is {Name} in {Location}: \n{Description}.";
     }
-    public void MostVisitedAtt()
+    public static void MostVisitedAtt()
     {
         int mammal = 0;
         int birds = 0;

@@ -1,7 +1,7 @@
 ﻿public class Ticket
 {
     private string attraction;
-    private double price;
+    //private double price;
     private int id;
     private TicketType type;
 
