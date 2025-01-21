@@ -44,6 +44,8 @@
                 return 1.0;
         }
     }
+
+
     public AnimalAttraction SearchByName(string name)
     {
         foreach (AnimalAttraction attr in allAttractions)
@@ -89,7 +91,58 @@
     {
         return $"Attraction№{Id} is {Name} in {Location}: \n{Description}.";
     }
+    public void MostVisitedAtt()
+    {
+        int mammal = 0;
+        int birds = 0;
+        int reptitles = 0;
+        int aquatic = 0;
+        int insects = 0;
+        foreach (AnimalAttraction attr in totalVisits)
+        {
+            switch (attr.type)
+            {
+                case AttractionType.MAMMALS:
+                    mammal++;
+                    break;
+                case AttractionType.BIRDS:
+                    birds++;
+                    break;
+                case AttractionType.REPTILES:
+                    reptitles++;
+                    break;
+                case AttractionType.AQUATIC:
+                    aquatic++;
+                    break;
+                case AttractionType.INSECTS:
+                    insects++;
+                    break;
+            }
+        }
+        int mostVisits = Math.Max(Math.Max(Math.Max(mammal, reptitles), birds), Math.Max(aquatic, insects));
+        Console.WriteLine("Most visits is: " + mostVisits);
 
+        if (mostVisits == mammal)
+        {
+            Console.WriteLine("The most visited is the Mammel!");
+        }
+        if (mostVisits == birds)
+        {
+            Console.WriteLine("The most visited is the Bird!");
+        }
+        if (mostVisits == reptitles)
+        {
+            Console.WriteLine("The most visited is the Reptile!");
+        }
+        if (mostVisits == aquatic)
+        {
+            Console.WriteLine("The most visited is the Aquatic!");
+        }
+        if (mostVisits == insects)
+        {
+            Console.WriteLine("The most visited is the Insect!");
+        }
+    }
 }
 public enum AttractionType
 { MAMMALS = 20, BIRDS = 15, REPTILES = 10, AQUATIC = 25, INSECTS = 5 }

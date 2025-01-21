@@ -46,8 +46,8 @@
 
         }
         totalspend += attraction.GetAttractionPrice(ticket);
+        AnimalAttraction.TotalVisits.Add(attraction);
     }
-
     public override string ToString()
     {
         return $"{Name}(№{Id}) is a/an {Type}({Age}).";
