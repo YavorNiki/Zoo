@@ -34,7 +34,7 @@ namespace Zoo
             string description = Console.ReadLine();
             AttractionType type;
 
-            string type1 = Console.ReadLine();
+            string type1 = Console.ReadLine().ToLower();
             switch (type1)
             {
                 case "m":
@@ -65,7 +65,7 @@ namespace Zoo
             int age = int.Parse(Console.ReadLine());
             VisitorType type;
 
-            string type1 = Console.ReadLine();
+            string type1 = Console.ReadLine().ToLower();
             switch (type1)
             {
                 case "s":
@@ -79,6 +79,26 @@ namespace Zoo
                     break;
             }
             Visitor a = new Visitor(id, name, age, type);
+        }
+        public static void CreateTicket()
+        {
+            string attraction = Console.ReadLine();
+            int id = int.Parse(Console.ReadLine());
+            TicketType type;
+            string type1 = Console.ReadLine().ToLower();
+            switch (type1)
+            {
+                case "s":
+                    type = TicketType.STUDENT_TICKET;
+                    break;
+                case "c":
+                    type = TicketType.CHILD_TICKET;
+                    break;
+                default:
+                    type = TicketType.ADULT_TICKET;
+                    break;
+            }
+            Ticket t = new Ticket(attraction, id, type);
         }
     }
 }

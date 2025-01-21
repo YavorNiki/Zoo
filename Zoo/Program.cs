@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Commands: Exit - exit the program; MostVisited - see most visited attractions; SAN + name - Search Attraction by name "
-                                + "FAT + type - filter attraction by type;  Printall - print all created attractions");
+                                + "FAT + type - filter attraction by type;  Printall - print all created attractions; createattr ; createvisitor; createticket");
 
             string command = Console.ReadLine();
             command = command.ToLower();
@@ -49,6 +49,18 @@
                 else if (command == "printall")
                 {
                     CommandParser.PrintAll();
+                }
+                else if (command == "createattr")
+                {
+                    CommandParser.CreateAttraction();
+                }
+                else if (command == "createvisitor")
+                {
+                    CommandParser.CreateVisitor();
+                }
+                else if (command == "createticket")
+                {
+                    CommandParser.CreateTicket();
                 }
                 else
                 {
