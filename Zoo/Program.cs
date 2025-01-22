@@ -1,73 +1,71 @@
-﻿namespace Zoo
+﻿using Zoo;
+
+internal class Program
 {
-    internal class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        CommandParser.PrintMenu();
+
+        string command = Console.ReadLine()?.ToLower();
+
+        while (command != "exit")
         {
-            Console.WriteLine("Commands: Exit - exit the program; MostVisited - see most visited attractions; SAN + name - Search Attraction by name "
-                                + "FAT + type - filter attraction by type;  Printall - print all created attractions; createattr ; createvisitor; createticket");
-
-            string command = Console.ReadLine();
-            command = command.ToLower();
-
-            while (command != "exit")
+            switch (command)
             {
-                if (command == "exit")
-                {
-                    return;
-                }
-                else if (command == "mostvisited")
-                {
+                case "mostvisited":
                     CommandParser.PrintMostVisited();
-                }
-                else if (command == "san")
-                {
-                    CommandParser.SAN(Console.ReadLine());
-                }
-                else if (command == "fat")
-                {
-                    string typ = Console.ReadLine();
-                    switch (typ)
+                    break;
+                case "san":
+                    Console.Write("Enter attraction name: ");
+                    string name = Console.ReadLine();
+                    CommandParser.SearchByName(name);
+                    break;
+                case "fat":
+                    Console.WriteLine("Enter type (m, b, r, a, i): ");
+                    string typeInput = Console.ReadLine().ToLower();
+                    AttractionType type = typeInput switch
                     {
-                        case "m":
-                            CommandParser.FAT(AttractionType.MAMMALS);
-                            break;
-                        case "b":
-                            CommandParser.FAT(AttractionType.BIRDS);
-                            break;
-                        case "r":
-                            CommandParser.FAT(AttractionType.REPTILES);
-                            break;
-                        case "a":
-                            CommandParser.FAT(AttractionType.AQUATIC);
-                            break;
-                        case "i":
-                            CommandParser.FAT(AttractionType.INSECTS);
-                            break;
-                    }
-                }
-                else if (command == "printall")
-                {
+                        "m" => AttractionType.MAMMALS,
+                        "b" => AttractionType.BIRDS,
+                        "r" => AttractionType.REPTILES,
+                        "a" => AttractionType.AQUATIC,
+                        "i" => AttractionType.INSECTS,
+                        _ => throw new InvalidOperationException("Invalid type.")
+                    };
+                    CommandParser.FilterByType(type);
+                    break;
+                case "printall":
                     CommandParser.PrintAll();
-                }
-                else if (command == "createattr")
-                {
+                    break;
+                case "createattr":
                     CommandParser.CreateAttraction();
-                }
-                else if (command == "createvisitor")
-                {
+                    break;
+                case "createvisitor":
                     CommandParser.CreateVisitor();
-                }
-                else if (command == "createticket")
-                {
+                    break;
+                case "createticket":
                     CommandParser.CreateTicket();
-                }
-                else
-                {
-                    Console.WriteLine($"Invalid Command: {command}. Please enter a valid command.");
-                }
-                command = Console.ReadLine();
+                    break;
+                case "visitattr":
+                    CommandParser.VisitAttraction();
+                    break;
+                case "randomfact":
+                    CommandParser.GetAnimalFact();
+                    break;
+                case "fun":
+                    CommandParser.RussianRoulette();
+                    break;
+                default:
+                    Console.WriteLine("Invalid command. NOW you have to play a little game before you go on \n");
+                    CommandParser.FunGame();
+                    break;
             }
+
+            CommandParser.PrintMenu();
+            command = Console.ReadLine()?.ToLower();
         }
+
+        Console.WriteLine("Goodbye!");
     }
 }
+

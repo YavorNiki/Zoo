@@ -1,5 +1,6 @@
 ﻿public class Visitor
 {
+    private static int nextId = 1;
     private int id;
     private string name;
     private int age;
@@ -11,46 +12,64 @@
     public int Age { get => age; set => age = value; }
     public VisitorType Type { get => type; set => type = value; }
     private double totalspend;
+    private static List<Visitor> allVisitors = new List<Visitor>();
+
     public List<AnimalAttraction> VisitedAttractions
     {
         get => visitedAttractions;
         set => visitedAttractions = value;
     }
     public double Totalspend { get => totalspend; set => totalspend = value; }
+    public static List<Visitor> AllVisitors { get => allVisitors; set => allVisitors = value; }
 
-    public Visitor(int id, string name, int age, VisitorType type)
+    public Visitor(string name, int age, VisitorType type)
     {
-        this.Id = id;
+        Id = nextId++;
         this.Name = name;
         this.Age = age;
         this.Type = type;
         totalspend = 0;
+        allVisitors.Add(this);
 
     }
-    public void visitAttraction(AnimalAttraction attraction)
+    public static Visitor SearchByID(int id)
     {
-        visitedAttractions.Add(attraction);
-        Ticket ticket = new Ticket(attraction.Name, 10, TicketType.ADULT_TICKET);
-
-        switch (Type)
+        foreach (Visitor vis in Visitor.AllVisitors)
         {
-            case VisitorType.ADULT:
-                ticket = new Ticket(attraction.Name, 10, TicketType.ADULT_TICKET);
-                break;
-            case VisitorType.CHILD:
-                ticket = new Ticket(attraction.Name, 10, TicketType.CHILD_TICKET);
-                break;
-            case VisitorType.STUDENT:
-                ticket = new Ticket(attraction.Name, 10, TicketType.STUDENT_TICKET);
-                break;
+            if (id == vis.Id)
+            {
+                return vis;
+            }
 
         }
-        totalspend += attraction.GetAttractionPrice(ticket);
+        return null;
+    }
+    public static void VisitAttraction(Visitor visitor, AnimalAttraction attraction)
+    {
+
+        TicketType ticketType = visitor.Type switch
+        {
+            VisitorType.ADULT => TicketType.ADULT_TICKET,
+            VisitorType.CHILD => TicketType.CHILD_TICKET,
+            VisitorType.STUDENT => TicketType.STUDENT_TICKET,
+            _ => TicketType.ADULT_TICKET
+        };
+
+        Ticket ticket = new Ticket(attraction.Name, ticketType);
+
+        double price = attraction.GetAttractionPrice(ticket);
+
+        visitor.VisitedAttractions.Add(attraction);
+
+        visitor.Totalspend += price;
+
         AnimalAttraction.TotalVisits.Add(attraction);
+
+        Console.WriteLine($"{visitor.Name} visited {attraction.Name} for {price:C2}$.");
     }
     public override string ToString()
     {
-        return $"{Name}(№{Id}) is a/an {Type}({Age}).";
+        return $"{Name}(with id:{Id}) is a/an {Type}({Age}).";
     }
 }
 public enum VisitorType

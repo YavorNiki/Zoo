@@ -1,5 +1,6 @@
 ﻿public class AnimalAttraction
 {
+    private static int nextId = 1;
     private int id;
     private string name;
     private string location;
@@ -20,10 +21,10 @@
 
 
 
-    public AnimalAttraction(int id, string name, string location,
+    public AnimalAttraction(string name, string location,
         string description, AttractionType type)
     {
-        this.Id = id;
+        Id = nextId++;
         this.Name = name;
         this.Location = location;
         this.Description = description;
@@ -45,7 +46,18 @@
                 return 1.0;
         }
     }
+    public static AnimalAttraction SearchByID(int id)
+    {
+        foreach (AnimalAttraction attr in AnimalAttraction.AllAttractions)
+        {
+            if (id == attr.Id)
+            {
+                return attr;
+            }
 
+        }
+        return null;
+    }
     public static AnimalAttraction SearchByName(string name)
     {
         foreach (AnimalAttraction attr in AllAttractions)
@@ -91,7 +103,7 @@
     }
     public override string ToString()
     {
-        return $"Attraction№{Id} is {Name} in {Location}: \n{Description}.";
+        return $"Attraction with id: {Id} is {Name} in {Location}: \n{Description}.";
     }
     public static void MostVisitedAtt()
     {
@@ -122,7 +134,7 @@
             }
         }
         int mostVisits = Math.Max(Math.Max(Math.Max(mammal, reptitles), birds), Math.Max(aquatic, insects));
-        Console.WriteLine("Most visits is: " + mostVisits);
+        Console.WriteLine($"Most visits is: {mostVisits}");
 
         if (mostVisits == mammal)
         {
