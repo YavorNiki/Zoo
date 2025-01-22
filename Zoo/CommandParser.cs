@@ -17,6 +17,7 @@
             Console.WriteLine("  createattr       - Create a new attraction");
             Console.WriteLine("  createvisitor    - Create a new visitor");
             Console.WriteLine("  createticket     - Create a new ticket");
+            Console.WriteLine("  feed             - feed a little cute animal");
             Console.WriteLine("  randomfact       - Gives a random animal fact");
             Console.WriteLine("  fun              - Play a fun little game:)");
             Console.WriteLine("==========================================================\n");
@@ -213,7 +214,19 @@
                 if (myNumber == compNumber)
                 {
                     Console.WriteLine("YOU DIED");
-                    compNumber = random.Next(1, 7);
+                    Console.WriteLine(@"
+                    _______
+                   /       \
+                  |         |
+                  |   X X   |
+                  |    |    |
+                  |   / \   |
+                  |_________|
+                   /     \
+                  /       \
+                 /_________\
+                        ");
+                    // compNumber = random.Next(1, 7);
                 }
                 else
                 {
@@ -269,6 +282,13 @@
 
         }
 
+        public static void FeedAnAnimal()
+        {
+            Console.WriteLine("Write the name of the animal, you would like to feed:");
+            string name = Console.ReadLine();
+
+            Console.WriteLine($"The animal {AnimalAttraction.SearchByName(name).Name} in {AnimalAttraction.SearchByName(name).Location} is currently beeing fed by you \n and is very happy:)");
+        }
         public static void GetAnimalFact()
         {
             Random random = new();

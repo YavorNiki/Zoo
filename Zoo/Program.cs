@@ -58,6 +58,9 @@ internal class Program
                 case "randomfact":
                     CommandParser.GetAnimalFact();
                     break;
+                case "feed":
+                    CommandParser.FeedAnAnimal();
+                    break;
                 case "fun":
                     CommandParser.RussianRoulette();
                     break;
@@ -72,6 +75,7 @@ internal class Program
         }
 
         Console.WriteLine("Goodbye!");
+        Console.ReadKey();
     }
 }
 
