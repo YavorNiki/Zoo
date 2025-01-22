@@ -11,7 +11,9 @@
             Console.WriteLine("  visitattr        - a visitor visits an attraction");
             Console.WriteLine("  san <name>       - Search Attraction by name");
             Console.WriteLine("  fat <type>       - Filter attractions by type");
-            Console.WriteLine("  printall         - Print all created attractions");
+            Console.WriteLine("  printallattr     - Print all created attractions");
+            Console.WriteLine("  printallvisitors - Print all created visitors");
+            Console.WriteLine("  printalltickets  - Print all created tickets");
             Console.WriteLine("  createattr       - Create a new attraction");
             Console.WriteLine("  createvisitor    - Create a new visitor");
             Console.WriteLine("  createticket     - Create a new ticket");
@@ -44,12 +46,28 @@
             AnimalAttraction.FilterByType(type);
         }
 
-        public static void PrintAll()
+        public static void PrintAllAttr()
         {
             Console.WriteLine("\nAll Attractions:");
-            foreach (var attr in AnimalAttraction.AllAttractions)
+            foreach (AnimalAttraction attr in AnimalAttraction.AllAttractions)
             {
                 Console.WriteLine(attr);
+            }
+        }
+        public static void PrintAllVisitors()
+        {
+            Console.WriteLine("\nAll Visitors:");
+            foreach (Visitor vis in Visitor.AllVisitors)
+            {
+                Console.WriteLine(vis);
+            }
+        }
+        public static void PrintAllTickets()
+        {
+            Console.WriteLine("\nAll Tickets:");
+            foreach (Ticket ticket in Ticket.AllTickets)
+            {
+                Console.WriteLine(ticket);
             }
         }
 

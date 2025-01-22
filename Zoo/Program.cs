@@ -34,8 +34,14 @@ internal class Program
                     };
                     CommandParser.FilterByType(type);
                     break;
-                case "printall":
-                    CommandParser.PrintAll();
+                case "printallattr":
+                    CommandParser.PrintAllAttr();
+                    break;
+                case "printallvisitors":
+                    CommandParser.PrintAllVisitors();
+                    break;
+                case "printalltickets":
+                    CommandParser.PrintAllTickets();
                     break;
                 case "createattr":
                     CommandParser.CreateAttraction();
