@@ -71,7 +71,7 @@ internal class Program
             }
 
             CommandParser.PrintMenu();
-            command = Console.ReadLine()?.ToLower();
+            command = Console.ReadLine().ToLower();
         }
 
         Console.WriteLine("Goodbye!");
