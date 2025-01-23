@@ -1,13 +1,12 @@
-﻿public class AnimalAttraction
+﻿using Zoo;
+
+public class AnimalAttraction : Ids, ISearchById<AnimalAttraction>
 {
-    private static int nextId = 1;
-    private int id;
     private string name;
     private string location;
     private string description;
     private AttractionType type;
 
-    public int Id { get => id; set => id = value; }
     public string Name { get => name; set => name = value; }
     public string Location { get => location; set => location = value; }
     public string Description { get => description; set => description = value; }
@@ -24,7 +23,6 @@
     public AnimalAttraction(string name, string location,
         string description, AttractionType type)
     {
-        Id = nextId++;
         this.Name = name;
         this.Location = location;
         this.Description = description;
@@ -48,16 +46,14 @@
     }
     public static AnimalAttraction SearchByID(int id)
     {
-        foreach (AnimalAttraction attr in AnimalAttraction.AllAttractions)
+        foreach (AnimalAttraction attr in AllAttractions)
         {
-            if (id == attr.Id)
-            {
+            if (attr.Id == id)
                 return attr;
-            }
-
         }
         return null;
     }
+
     public static AnimalAttraction SearchByName(string name)
     {
         foreach (AnimalAttraction attr in AllAttractions)

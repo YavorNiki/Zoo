@@ -17,6 +17,9 @@
             Console.WriteLine("  createattr       - Create a new attraction");
             Console.WriteLine("  createvisitor    - Create a new visitor");
             Console.WriteLine("  createticket     - Create a new ticket");
+            Console.WriteLine("  attrbyID         - search a attraction by id");
+            Console.WriteLine("  visitorbyID      - search a visitor by id");
+            Console.WriteLine("  ticketbyID       - search a visitor by id");
             Console.WriteLine("  feed             - feed a little cute animal");
             Console.WriteLine("  randomfact       - Gives a random animal fact");
             Console.WriteLine("  fun              - Play a fun little game:)");
@@ -158,7 +161,7 @@
         {
             Console.WriteLine("\nCreating a new ticket. Please provide the following details:");
 
-            Console.Write("Attraction Name: ");
+            Console.Write("Ticket Name: ");
             string attraction = Console.ReadLine();
 
 
@@ -186,6 +189,90 @@
             Console.WriteLine("Ticket created successfully!\n" + newTicket);
         }
 
+        public static void SearchAttrByID()
+        {
+            Console.WriteLine("Enter attraction's ID: ");
+
+            try
+            {
+                int id = int.Parse(Console.ReadLine());
+                var attraction = AnimalAttraction.SearchByID(id);
+
+                if (attraction != null)
+                {
+                    Console.WriteLine(attraction.ToString());
+                }
+                else
+                {
+                    Console.WriteLine("No attraction found with this ID.");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid ID entered. Please enter a valid number.");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("An error occurred while searching for the attraction.");
+            }
+
+        }
+        public static void SearchVisitorByID()
+        {
+            Console.WriteLine("Enter visitor's ID: ");
+
+            try
+            {
+                int id = int.Parse(Console.ReadLine());
+                var vis = Visitor.SearchByID(id);
+
+                if (vis != null)
+                {
+                    Console.WriteLine(vis.ToString());
+                }
+                else
+                {
+                    Console.WriteLine("No visitor found with this ID.");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid ID entered. Please enter a valid number.");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("An error occurred while searching for the visitor.");
+            }
+
+        }
+        public static void SearchTicketByID()
+        {
+            Console.WriteLine("Enter ticket's ID: ");
+
+            try
+            {
+                int id = int.Parse(Console.ReadLine());
+                var tic = Ticket.SearchByID(id);
+
+                if (tic != null)
+                {
+                    Console.WriteLine(tic.ToString());
+                }
+                else
+                {
+                    Console.WriteLine("No ticket found with this ID.");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid ID entered. Please enter a valid number.");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("An error occurred while searching for the ticket.");
+            }
+
+        }
         public static void VisitAttraction()
         {
             Console.WriteLine("Enter visitor ID:");

@@ -64,6 +64,15 @@ internal class Program
                 case "fun":
                     CommandParser.RussianRoulette();
                     break;
+                case "attrbyid":
+                    CommandParser.SearchAttrByID();
+                    break;
+                case "visitorbyid":
+                    CommandParser.SearchVisitorByID();
+                    break;
+                case "ticketbyid":
+                    CommandParser.SearchTicketByID();
+                    break;
                 default:
                     Console.WriteLine("Invalid command. NOW you have to play a little game before you go on \n");
                     CommandParser.FunGame();

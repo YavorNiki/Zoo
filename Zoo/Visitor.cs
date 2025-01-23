@@ -1,13 +1,13 @@
-﻿public class Visitor
+﻿using Zoo;
+
+public class Visitor : Ids, ISearchById<Visitor>
 {
-    private static int nextId = 1;
-    private int id;
+
     private string name;
     private int age;
     private VisitorType type;
     private List<AnimalAttraction> visitedAttractions = new List<AnimalAttraction>();
 
-    public int Id { get => id; set => id = value; }
     public string Name { get => name; set => name = value; }
     public int Age { get => age; set => age = value; }
     public VisitorType Type { get => type; set => type = value; }
@@ -24,7 +24,6 @@
 
     public Visitor(string name, int age, VisitorType type)
     {
-        Id = nextId++;
         this.Name = name;
         this.Age = age;
         this.Type = type;
@@ -34,7 +33,7 @@
     }
     public static Visitor SearchByID(int id)
     {
-        foreach (Visitor vis in Visitor.AllVisitors)
+        foreach (Visitor vis in AllVisitors)
         {
             if (id == vis.Id)
             {
