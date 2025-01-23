@@ -1,12 +1,12 @@
-﻿public class Ticket
+﻿using Zoo;
+
+public class Ticket : Ids, ISearchById<Ticket>
 {
     private string attraction;
-    private static int nextId = 1;
-    private int id;
+
     private TicketType type;
 
     public string Attraction { get => attraction; set => attraction = value; }
-    public int Id { get => id; set => id = value; }
     public TicketType Type { get => type; set => type = value; }
     public static List<Ticket> AllTickets { get => allTickets; set => allTickets = value; }
 
@@ -15,9 +15,17 @@
     public Ticket(string attraction, TicketType type)
     {
         this.Attraction = attraction;
-        Id = nextId++;
         this.Type = type;
         allTickets.Add(this);
+    }
+    public static Ticket SearchByID(int id)
+    {
+        foreach (Ticket tic in AllTickets)
+        {
+            if (tic.Id == id)
+                return tic;
+        }
+        return null;
     }
     public override string ToString()
     {
