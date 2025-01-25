@@ -61,6 +61,9 @@ internal class Program
                 case "feed":
                     CommandParser.FeedAnAnimal();
                     break;
+                case "buyic":
+                    CommandParser.BuyIceCream();
+                    break;
                 case "fun":
                     CommandParser.RussianRoulette();
                     break;

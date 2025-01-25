@@ -6,7 +6,6 @@
         {
             Console.WriteLine("\n================ Zoo Attraction Management =================");
             Console.WriteLine("Commands:");
-            Console.WriteLine("  exit             - Exit the program");
             Console.WriteLine("  mostvisited      - See the most visited attractions");
             Console.WriteLine("  visitattr        - a visitor visits an attraction");
             Console.WriteLine("  san <name>       - Search Attraction by name");
@@ -21,11 +20,12 @@
             Console.WriteLine("  visitorbyID      - search a visitor by id");
             Console.WriteLine("  ticketbyID       - search a visitor by id");
             Console.WriteLine("  feed             - feed a little cute animal");
+            Console.WriteLine("  buyIC            - By some tasty ice cream:)");
             Console.WriteLine("  randomfact       - Gives a random animal fact");
             Console.WriteLine("  fun              - Play a fun little game:)");
+            Console.WriteLine("  exit             - Exit the program");
             Console.WriteLine("==========================================================\n");
         }
-
         public static void PrintMostVisited()
         {
             AnimalAttraction.MostVisitedAtt();
@@ -275,17 +275,48 @@
         }
         public static void VisitAttraction()
         {
-            Console.WriteLine("Enter visitor ID:");
+            Console.Write("Enter visitor ID:");
             int visID = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter attraction ID:");
+            Console.Write("Enter attraction ID:");
             int attrID = int.Parse(Console.ReadLine());
 
             Visitor.VisitAttraction(Visitor.SearchByID(visID), AnimalAttraction.SearchByID(attrID));
 
             Console.WriteLine($"Visitor {Visitor.SearchByID(visID).Name} visited attraction {AnimalAttraction.SearchByID(attrID).Name}");
         }
+        public static void BuyIceCream()
+        {
+            Console.Write("Enter the ID of the visitor that you want to buy Ice Cream for: ");
+            int id = int.Parse(Console.ReadLine());
+            if (Visitor.SearchByID(id) == null)
+            {
+                Console.WriteLine("No visitor found with this ID, try again!");
+                return;
+            }
 
+
+            Console.Write("Do you want Strawberry, Chocolate or Vanilla Ice Cream?: ");
+            string type = Console.ReadLine().ToLower();
+            IceCreamType ictype;
+
+            switch (type)
+            {
+                case "strawberry":
+                    ictype = IceCreamType.strawberry; break;
+                case "chocolate":
+                    ictype = IceCreamType.chocolate; break;
+                case "vanilla":
+                    ictype = IceCreamType.vanilla; break;
+                default:
+                    Console.WriteLine("We don't have such flavour, please try again!");
+                    return;
+            }
+
+            IceCream.BuyIceCream(Visitor.SearchByID(id), ictype);
+            Console.WriteLine($"Mmmm {Visitor.SearchByID(id).Name} bought some delicious {type} Ice cream, and his total spend now is: {Visitor.SearchByID(id).Totalspend:F2}$");
+
+        }
         public static void RussianRoulette()
         {
             Console.WriteLine("\t WELCOME TO RUSSIAN ROLLETE WOHOOOO    \n\n");
@@ -335,7 +366,6 @@
 
             }
         }
-
         public static void FunGame()
         {
             Console.WriteLine("\t WELCOME TO RUSSIAN ROLLETE WOHOOOO    \n\n");
@@ -368,7 +398,6 @@
             }
 
         }
-
         public static void FeedAnAnimal()
         {
             Console.WriteLine("Write the name of the animal, you would like to feed:");
