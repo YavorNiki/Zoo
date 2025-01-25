@@ -64,7 +64,7 @@ public class Visitor : Ids, ISearchById<Visitor>
 
         AnimalAttraction.TotalVisits.Add(attraction);
 
-        Console.WriteLine($"{visitor.Name} visited {attraction.Name} for {price:C2}$.");
+        Console.WriteLine($"{visitor.Name} visited {attraction.Name} for {price:F2}$.");
     }
     public override string ToString()
     {
